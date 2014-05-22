@@ -1,0 +1,124 @@
+###################################################################
+# Carnegie Mellon University - Electrical and Computer Engineering
+# 18-645: How To Write Fast Code (Fall 2012)
+#
+#     HOMEWORK 3 Answer Sheet
+#
+# Due:  March 10, 2014
+#
+# Note: For ease of grading, please follow the format exactly
+#
+#       There are many students in this class, the course staff
+#       would like to automate the process of grading the 
+#       homework so we can spend more time helping you with the 
+#       understanding of the knowledge. 
+#
+#       Thank you for your cooperation. 
+#
+###################################################################
+
+Student Name : Chen Wang
+
+Team Name : Team 34
+
+Date of Submission : Mar. 10, 2014
+
+# =================================================================
+# TASK 0
+# - Please name this file: 18645_HW3_Team{0#}_{Last_First}.txt
+# - e.g. "18645_HW3_Team03_Anderson_Jane.txt"
+
+Is this complete? (Yes/No): Yes
+
+# - Create Amazon AWS account
+
+Is this complete? (Yes/No): Yes
+
+# =================================================================
+# TASK 1 - Installing Hadoop on local machine
+
+Is this complete? (Yes/No): Yes
+
+# =================================================================
+# TASK 2 - Compiling and running Project 3 on local machine
+
+Is this complete? (Yes/No): Yes
+
+Question:
+1) How long does each map-reduce step take? (in ms) (Hint: See hadoop output)
+NgramCount : 1784622 ms
+HashtagSim : 515382 ms
+
+# Only put the numbers
+A1 - Compute NGram Count: 1782039 ms
+A2 - Get feature vector for hashtag #Job: 179440 ms
+A3 - Get feature vector for all hashtags: 328763 ms
+A4 - Get similarities between #job and all other hashtags: 4400 ms
+
+2) How many output files are there for NgramCount and HashtagSim? (Only count part-r-*)
+
+A5 - NgramCount: 1
+A6 - HashtagSim: 1
+
+3) What is the N of the ngrams, for the current implementation?
+
+A7 - N: 1
+
+4) What are the top 5 most occurring ngrams? (Hint: sort the output in data/ngram10m/)
+
+# Put most popular ones first, put only the ngram not the count, separate by ','
+# Example: it, is, are, we, ...
+
+A8 - Top 5 ngrams: the, to, a, rt, for
+
+5) What are the top 5 pairs of hashtags that have highest similarity score? (Hint: sort output in
+data/hashtag10m, remove pairs that are duplicated)
+
+# Put most similar ones first, put only the hashtag pair not the count, separate by ','
+# Example: #job #jobs, #facebook #google, ...
+
+A9 - Top 5 pairs: #job #fb, #job #ff, #job #smem, #job #photography, #job #1
+
+
+# =================================================================
+# TASK 3 - Running Project 3 on Amazon EMR cluster
+
+Is this complete? (Yes/No): Yes
+
+Question:
+1) How long does each map-reduce step take? (in ms) (Hint: See log file in S3)
+NgramCount : 220725 ms
+HashtagSim : 175330 ms
+
+# Only put the numbers
+A10 - Compute NGram Count: 218646 ms
+A11 - Get feature vector for hashtag #Job: 62822 ms
+A12 - Get feature vector for all hashtags: 74825 ms
+A13 - Get similarities between #job and all other hashtags: 35398 ms
+
+2) How many output files are there for NgramCount and HashtagSim? (Only count part-r-*)
+
+A14 - NgramCount: 4
+A15 - HashtagSim: 4
+
+Is it the same as running both programs locally? (Yes/No): No
+
+If not, what's the reason?
+
+A16 - Reason: On EMR, 5 instances are used to run the computation. The default configuration is 1 master node and 4 slave nodes, so all 4 slave nodes will split the job to 4 parts and each slave node computes one part and outputs one part of results. 
+
+3) What are the top 5 most occurring ngrams? (Hint: retrieve all output files and sort)
+
+# Put most popular ones first, put only the ngram not the count, separate by ','
+# Example: it, is, are, we, ...
+
+A17 - Top 5 ngrams: the, to, a, rt, for
+
+4) What are the top 5 pairs of hashtags that have highest similarity score? (Hint: retrieve all output files
+and sort, remove pairs that are duplicated)
+
+# Put most similar ones first, put only the hashtag pair not the count, separate by ','
+# Example: #job #jobs, #facebook #google, ...
+
+A18 - Top 5 pairs: #job #fb, #job #ff, #job #smem, #job #photography, #job #1
+

@@ -1,0 +1,3 @@
+Proj3-1: Part I for the project. Enable -n args for NGramCount
+Proj3-2: Part II for the project. Brute force algorithm to find similarities for all hash tags.
+Proj3-3: Part III for the project. Optimization for hashtagSim using inverted index.

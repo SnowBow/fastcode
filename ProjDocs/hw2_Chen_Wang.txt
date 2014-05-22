@@ -1,0 +1,86 @@
+###################################################################
+# Carnegie Mellon University - Electrical and Computer Engineering
+# 18-645: How To Write Fast Code (Spring 2014)
+#
+#     HOMEWORK 2 Answer Sheet
+#
+# Due:  Feb 17, 2014
+#
+# Note: For ease of grading, please follow the format exactly
+#
+#       There are many students in this class, the course staff
+#       would like to automate the process of grading the 
+#       homework so we can spend more time helping you with the 
+#       understanding of the knowledge. 
+#
+#       Thank you for your cooperation. 
+#
+###################################################################
+
+Student Name : Chen Wang
+
+Team Name : TEAM 34
+
+Date of Submission : February 17, 2014
+
+# =================================================================
+# TASK 0
+# - Please name this file: 18645_HW2_Team{0#}_{Last_First}.txt
+# - e.g. "18645_HW2_Team03_Anderson_Jane.txt"
+
+Have you uploaded your resume on the course's wiki page ? (Yes/No)
+# (https://wiki.ece.cmu.edu/index.php/18-645_Student_Resume)
+
+# =================================================================
+# TASK 1
+# - Setting up the CUDA environment
+# - Downloading and Installing SDK
+# - Build executables   
+# - Run Tests
+
+Question 1:
+a) Host to Device Bandwidth: 5720.7 MB/s
+b) Device to Host Bandwidth: 6095.1 MB/s
+c) Device to Device Bandwidth: 149233.7 MB/s
+
+# =================================================================
+# TASK 2
+# - Get information about the GPU and Run the CUDA Visual Profiler
+# - Running the CUDA Visual Profiler
+
+Is this complete? (Yes/No): Yes
+
+# - Questions on CUDA and GPUs
+
+Question 1 :
+a) Number of threads per block: 1024 threads/block
+b) Number of threads in a warp: 32 threads/warp
+c) Maximum number of threads per Streaming Multiprocessor: 1536
+d) Maximum number of warps per block: 1024/32 = 32
+e) Maximum number of warps per Streaming Multiprocessor: 1536/32 = 48
+
+Question 2 :
+a) The size of the register file per Streaming Multiprocessor: 32K 32bit registers 
+b)  Is the shared memory divided into 16 memory banks? (True/False): False
+c) The size of the global memory on the device: 1536 MBytes
+d) The total amount of shared memory per block: 49152 bytes
+
+Question 3 :
+a) The maximum number of floating point operations per thread per cycle: 2 flop/thread/cycle
+b) Yes/No: No (It exceeds peak performance.)
+c) The peak performance of a single GTX460 GPU: 1344.960 GFLOPS
+
+Question 4 :
+a) The total amount of L2 cache: 786432 bytes
+b) True/False: False
+c) True/False: False
+
+
+# =================================================================
+# TASK 3
+# - Getting Started on CUDA Matrix Multiply
+
+Question 1 : 
+a) If successful, report the performance you get for this test case, otherwise explain why it fails:
+Fails.
+Because in GTX 480, the maximum number of threads per block is 1024, however 33X33 matrix multiplication tries to launch 33 x 33 = 1096 threads to execute, which exceeds 1024. Therefore, it fails.

@@ -1,0 +1,179 @@
+###################################################################
+# Carnegie Mellon University - Electrical and Computer Engineering
+# 18-645: How To Write Fast Code (Spring 2014)
+#
+#     HOMEWORK 1 Answer Sheet
+#
+# Due:  
+#
+# Note: For ease of grading, please follow the format exactly
+#
+#       There are many students in this class, the course staff
+#       would like to automate the process of grading the 
+#       homework so we can spend more time helping you with the 
+#       understanding of the knowledge. 
+#
+#       Thank you for your cooperation. 
+#
+###################################################################
+
+Student Name : Chen Wang
+
+Team Name : Team34
+
+Date of Submission : January 22, 2014
+
+# =================================================================
+# TASK 0
+# - Please name this file: 18645_HW1_Team{0#}_{Last_First}.txt
+# - e.g. "18645_HW1_Team03_Anderson_Jane.txt"
+
+Is this complete? (Yes/No): Yes
+
+# =================================================================
+# TASK 1 
+# - Logging into a cluster machine
+
+Is this complete? (Yes/No): Yes
+
+
+# =================================================================
+# TASK 2 
+# - Creating a git repository
+
+Question 1 : The andrew id wherein the git repository of your team resides : sungjael
+
+Question 2 : Team name as provided by the course staff (eg. team03) : team34
+
+Question 3 : Report the speed of execution of all three test cases (in matrix_mul_01.dat) using the sequential version on one of the cluster machines:
+Testcase 1 : 0.00610352 milliseconds
+Testcase 2 : 0.00708008 milliseconds
+Testcase 3 : 0.188965 milliseconds
+
+# There is an additional test case when I was testing the code.
+# I test my code at 12:57 pm (EST) in ghc77.
+# Testcase 4 : 0.201904 milliseconds
+
+# =================================================================
+# TASK 3 
+# - Accessing the Jenkins Interface
+
+Question 1 : For your team's matrix_mul application, please report the runtime for sequential, OpenMP and CUDA implementations as shown in the Jenkins Console log file
+
+# Successful build #63 for in team #34 for matrix_mul_02.dat
+
+Sequential Version:
+	Testcase 1 : 0.00610352 milliseconds
+	Testcase 2 : 0.0141602 milliseconds
+	Testcase 3 : 0.187988 milliseconds
+
+# There are two additional test cases on Jenkins.
+#	Testcase 4: 0.203125 milliseconds
+#	Testcase 5: 6450.24 milliseconds
+
+OpenMP Version:
+	Testcase 1 : 0.000976562 milliseconds
+	Testcase 2 : 0.00195312 milliseconds
+	Testcase 3 : 0.0439453 milliseconds
+
+# There are two additional test cases on Jenkins.
+#	Testcase 4: 0.0471191 milliseconds
+#	Testcase 5: 1926.47 milliseconds
+
+CUDA Version:
+	Testcase 1 : 0.00402007 Gflop/s
+	Testcase 2 : 0.00796969 Gflop/s
+	Testcase 3 : 0.263031 Gflop/s
+
+Question 2: For your team's K-means project, please report:
+
+# I report results #19 with data kmeans01.dat
+a) The configuration of the K-means algorithm being tested
+	numObjs 	: 351
+	numCoords	: 34
+	numClusters	: 3
+	threshold 	: 0.0010
+
+b) The runtime for I/O and Computation for sequential, OpenMP, and CUDA implementations.
+
+I/O runtime:
+	Sequential : 0.0048
+	OpenMP	   : 0.0049 
+	CUDA	   : 0.0053
+
+Computation runtime:
+	Sequential : 0.0025
+	OpenMP	   : 0.0309
+	CUDA	   : 0.0560
+
+# =================================================================
+# TASK 4 
+# - Learning about your computing resources
+
+Question 1: For ghc51.ghc.andrew.cmu.edu, log in and determine:
+a) The exact processor model
+	Value		: 26				
+	Source/Command	: cat /proc/cpuinfo |grep "model" |grep -v "name" |uniq |awk -F: '{print $2}'
+
+# [chenw-comment] For name info.
+# Intel(R) Xeon(R) CPU		W3520	@ 2.67GHz
+# cat /proc/cpuinfo |grep “model name” |uniq
+
+b) The number of physical cores it has
+	Value		: 4
+	Source/Command	: lscpu |egrep '^CPU\(s\)|Thread\(s\)'|awk -F: '{print m=m*$2}' m=1 |tail -n 1
+
+c) The number of virtual cores it has
+  	Value           : 4
+	Source/Command  : cat /proc/cpuinfo |grep "cpu cores" |uniq | awk -F: '{print $2}'
+ 
+d) L1 cache size specification
+  Value           : 64K
+  Source/Command  : lscpu | grep L1 | awk -F: '{printf "%dK\n", sum+=$2}' |tail -n 1
+    
+e) L2 cache size specification
+  Value           : 256K
+  Source/Command  : lscpu | grep L2 | awk -F: '{print $2}'
+    
+f) The level of SSE the processor supports
+  Value           : mmx
+		    sse
+		    sse2
+		    sse3
+		    sse4_1
+		    sse4_2
+  Source/Command  : cat /proc/cpuinfo |grep "sse" |uniq |sed s/" "/\\n" "/g |grep "(sse|mmx|avx|fma)"
+    
+
+Question 2: For your laptop, determine:
+a) The exact processor model
+  Value           : 42					# Intel(R) Core(TM) i5-2467M CPU @ 1.60Ghz
+  Source/Command  : sysctl machdep.cpu.model		# sysctl -n machdep.cpu.brand_string
+    
+b) The number of physical cores it has
+  Value           : 2
+  Source/Command  : sysctl machdep.cpu.core_count|awk -F: '{print $2}'
+    
+c) The number of virtual cores it has
+  Value           : 4
+  Source/Command  : sysctl hw.ncpu | awk -F: '{print $2}'
+    
+d) L1 cache size specification
+  Value           : 65536
+  Source/Command  : sysctl hw.l1icachesize hw.l1dcachesize | awk '{print sum+=$2}'|tail -n 1
+    
+e) L2 cache size specification
+  Value           : 262144
+  Source/Command  : sysctl hw.l2cachesize | awk '{print $2}'
+
+f) The level of SSE the processor supports
+  Value           : mmx
+		    sse
+		    sse2
+		    sse3
+		    supplementalsse3
+		    sse4_1
+		    sse4_2
+		    avx1_0
+  Source/Command  : sudo sysctl hw.optional |egrep 'sse|mmx|avx|fma' |awk -F: '{if($2 == 1) print $1}' |awk -F. '{print $3}'
+    
