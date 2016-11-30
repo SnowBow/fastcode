@@ -1,5 +1,5 @@
-### A hadoop version to NgramCount, HashtagSim and KMeans
-## Chen Wang, chenw@cmu.edu
+## A hadoop version to NgramCount, HashtagSim and KMeans
+#### Chen Wang, chenw@cmu.edu
 
 1. Hadoop Version of NgramCount
   * Description: Give the count of all N-grams (http://en.wikipedia.org/wiki/N-gram) in a given documents. You could specify N.
